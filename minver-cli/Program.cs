@@ -12,7 +12,9 @@ app.FullName = $"MinVer CLI {informationalVersion}";
 
 app.HelpOption();
 
+#if MINVER_CLI
 var workDirArg = app.Argument("workingDirectory", "Working directory (optional)");
+#endif
 
 var autoIncrementOption = app.Option("-a|--auto-increment <VERSION_PART>", VersionPartExtensions.ValidValues, CommandOptionType.SingleValue);
 var buildMetaOption = app.Option("-b|--build-metadata <BUILD_METADATA>", "", CommandOptionType.SingleValue);
@@ -28,6 +30,7 @@ var versionOverrideOption = app.Option("-o|--version-override <VERSION>", "", Co
 
 app.OnExecute(() =>
 {
+#if MINVER_CLI
     var workDir = workDirArg.Value ?? ".";
 
     if (!Directory.Exists(workDir))
@@ -35,6 +38,9 @@ app.OnExecute(() =>
         Logger.ErrorWorkDirDoesNotExist(workDir);
         return 2;
     }
+#else
+    var workDir = ".";
+#endif
 
     if (!Options.TryParse(
         autoIncrementOption.Value(),

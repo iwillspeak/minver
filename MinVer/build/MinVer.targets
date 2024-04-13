@@ -4,8 +4,8 @@
     <MSBuildAllProjects Condition="'$(MSBuildAssemblyVersion)' == '' Or '$(MSBuildAssemblyVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <GenerateNuspecDependsOn>$(GenerateNuspecDependsOn);MinVer</GenerateNuspecDependsOn>
     <GetPackageVersionDependsOn>$(GetPackageVersionDependsOn);MinVer</GetPackageVersionDependsOn>
-    <MinVerTaskPath Condition="'$(MSBuildRuntimeType)' == 'Core'">$(MSBuildThisFileDirectory)task\net6.0\MinVer.MSBuild.dll</MinVerTaskPath>
-    <MinVerTaskPath Condition="'$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)task\net472\MinVer.MSBuild.dll</MinVerTaskPath>
+    <MinVerTaskPath Condition="'$(MSBuildRuntimeType)' == 'Core'">$(MSBuildThisFileDirectory)bin\net6.0\MinVer.MSBuild.dll</MinVerTaskPath>
+    <MinVerTaskPath Condition="'$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)bin\net472\MinVer.MSBuild.dll</MinVerTaskPath>
   </PropertyGroup>
 
   <UsingTask TaskName="MinVer.MSBuild.MinVerTask" AssemblyFile="$(MinVerTaskPath)" />
@@ -33,13 +33,14 @@
     <Message Importance="$(MinVerDetailed)" Text="MinVer: [input] MinVerTagPrefix=$(MinVerTagPrefix)" />
     <Message Importance="$(MinVerDetailed)" Text="MinVer: [input] MinVerVerbosity=$(MinVerVerbosity)" />
     <Message Importance="$(MinVerDetailed)" Text="MinVer: [input] MinVerVersionOverride=$(MinVerVersionOverride)" />
-    <MinVerTask GitWorkingDirectory="$(MSBuildProjectDirectory)"
+    <MinVerTask
       AutoIncrement="$(MinVerAutoIncrement)"
       BuildMetadata="$(MinVerBuildMetadata)"
       DefaultPreReleaseIdentifiers="$(MinVerDefaultPreReleaseIdentifiers)"
       DefaultPreReleasePhase="$(MinVerDefaultPreReleasePhase)"
       IgnoreHeight="$(MinVerIgnoreHeight)"
       MinimumMajorMinor="$(MinVerMinimumMajorMinor)"
+      ProjectDirectory="$(MSBuildProjectDirectory)"
       TagPrefix="$(MinVerTagPrefix)"
       Verbosity="$(MinVerVerbosity)"
       VersionOverride="$(MinVerVersionOverride)"
