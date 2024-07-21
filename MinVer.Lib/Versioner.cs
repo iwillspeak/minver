@@ -28,9 +28,9 @@ public static class Versioner
             ? minMajorMinor != MajorMinor.Default && log.IsDebugEnabled && log.Debug($"Ignoring minimum major minor {minMajorMinor} because the commit is tagged.")
             : calculatedVersion != version
                 ? log.IsInfoEnabled &&
-                  log.Info($"Bumping version to {calculatedVersion} to satisfy minimum major minor {minMajorMinor}.")
+                    log.Info($"Bumping version to {calculatedVersion} to satisfy minimum major minor {minMajorMinor}.")
                 : log.IsDebugEnabled &&
-                  log.Debug($"The calculated version {calculatedVersion} satisfies the minimum major minor {minMajorMinor}.");
+                    log.Debug($"The calculated version {calculatedVersion} satisfies the minimum major minor {minMajorMinor}.");
 
         _ = log.IsInfoEnabled && log.Info($"Calculated version {calculatedVersion}.");
 
