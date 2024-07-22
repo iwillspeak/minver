@@ -11,9 +11,7 @@ public class CacheSet : Task
 
     public override bool Execute()
     {
-        this.BuildEngine4.RegisterTaskObject(
-            this.Key, this.Value, RegisteredTaskObjectLifetime.Build, allowEarlyCollection: false);
-
+        this.BuildEngine4.RegisterTaskObject(this.Key, this.Value, RegisteredTaskObjectLifetime.Build, default);
         return true;
     }
 }

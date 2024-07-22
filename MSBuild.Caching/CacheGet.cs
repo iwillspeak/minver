@@ -12,7 +12,7 @@ public class CacheGet : Task
 
     public override bool Execute()
     {
-        this.Value = (string?)this.BuildEngine4.GetRegisteredTaskObject(this.Key, RegisteredTaskObjectLifetime.Build) ?? "";
+        this.Value = (string?)this.BuildEngine4.GetRegisteredTaskObject(this.Key, RegisteredTaskObjectLifetime.Build);
         return true;
     }
 }
