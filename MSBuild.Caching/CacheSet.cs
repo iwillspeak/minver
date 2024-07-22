@@ -5,8 +5,10 @@ namespace MSBuild.Caching;
 
 public class CacheSet : Task
 {
+    [Required]
     public string? Key { get; set; }
 
+    [Required]
     public string? Value { get; set; }
 
     public override bool Execute()

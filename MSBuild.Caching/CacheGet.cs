@@ -5,6 +5,7 @@ namespace MSBuild.Caching;
 
 public class CacheGet : Task
 {
+    [Required]
     public string? Key { get; set; }
 
     [Output]
